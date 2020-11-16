@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="icon"
+        href="https://cdn3.iconfinder.com/data/icons/banking-finance-ii-flat-multicolor-background-shad/2048/1541_-_Checklist-512.png"
+        type="image/icon">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <title>My To Do List</title>
+    <style>
+        body {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            /* background-color: rgb(13, 155, 155); */
+            background-image: url('https://img4.goodfon.com/wallpaper/nbig/1/a9/beautiful-rozovye-roses-pink-romantic-rozy-tender-present-fl.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        h1 {
+            color: rgb(247, 35, 183);
+            font-size: 4vw;
+        }
+
+        #todo {
+            margin-top: 3vw;
+        }
+
+        ul li {
+            list-style-type: none;
+        }
+
+        .table-div {
+            margin-left: 25vw;
+            margin-right: 25vw;
+        }
+        .delete-all{
+            text-decoration-line: none;
+            color: aliceblue;
+        }
+        .delete-all:hover{
+            text-decoration-line: none;
+            color: aliceblue;
+        }
+
+        td {
+            font-size: 1.3vw;
+        }
+
+        .task {
+            font-size: 1.3vw;
+        }
+
+        @media screen and (max-width: 700px) {
+            .task {
+                font-size: 2vw;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <div id="todo">
+        <div class="d-flex justify-content-center">
+            <h1>My To Do List</h1>
+        </div>
+        <div class="d-flex justify-content-center">
+            <div class="mt-3">
+                <div>
+                    <form action="/addTask" method="post" class="form-inline">
+                        <input type="text" name="title" placeholder="Title.." id="title" class="form-control">
+                        <button type="submit" name="addTask" class="btn btn-warning" id="add">ADD</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="text-center table-div mt-4">
+            <%if(tasks.length){%>
+            <button class="btn btn-danger btn-lg"><a href="/delete-all" class="delete-all">Delete all</a></button>
+            <br><br>
+            <table class=" table table-borderless table-hover">
+                <% if(tasks.length){%>
+                <tr class="table-primary">
+                    <th>Task Name</th>
+                    <th colspan="2">Actions</th>
+                </tr>
+                <%}%>
+                <% for(i = 0; i < tasks.length; i++){%>
+                <tr class="table-info">
+                    <td name="name_list" class="task"><%=tasks[i].taskname%></td>
+                    <td name="edit-btn"><a href="/edit-task/<%=tasks[i].id%>" class="btn btn-info">Edit</a></td>
+                    <td name="delete-btn"><a href="/delete-task/<%=tasks[i].id%>" class="btn btn-danger">Delete</a></td>
+                </tr>
+                <%}} else{ %>
+                <tr>
+                    <td>Task Empty.. pagbutang uyy. hayahaya gud nimo!</td>
+                </tr>
+                <%}%>
+                </table>
+        </div>
+    </div>
+    <script>
+
+    </script>
+</body>
+
+</html>
